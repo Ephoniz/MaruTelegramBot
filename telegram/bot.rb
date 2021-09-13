@@ -2,7 +2,13 @@ require_relative "../config/environment"
 
 require 'telegram/bot'
 
-token = '1953428059:AAEZR6dhbriFmyZOq-qKza0y9ZD3U8WkWd4'
+Bundler.require(*Rails.groups)
+
+Dotenv::Railtie.load
+
+token = ENV['TELEGRAM_TOKEN']
+
+# token = '1953428059:AAEZR6dhbriFmyZOq-qKza0y9ZD3U8WkWd4'
 
 Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |message|
